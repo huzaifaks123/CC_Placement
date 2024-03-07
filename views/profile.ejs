@@ -1,0 +1,13 @@
+<link rel="stylesheet" href="/css/profile.css">
+<div id="profile-container">
+
+    <div><img src="https://cdn-icons-png.flaticon.com/128/149/149071.png" alt="profile-icon"></div>
+    <% if(locals.user){%>
+        <h1>
+            <%= user.name %>
+        </h1>
+        <h3>
+            <%= user.email %>
+        </h3>
+        <%} %>
+    </div>

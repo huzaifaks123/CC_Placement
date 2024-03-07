@@ -1,0 +1,183 @@
+#interview-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 40px;
+
+    #export-button {
+        margin-left: auto;
+
+        button {
+            font-size: 1rem;
+            color: #ffffff;
+            width: 8rem;
+            height: 2rem;
+            border: none;
+            background-color: #944E63;
+            padding-left: 0px 20px;
+            border-radius: 10px;
+        }
+    }
+
+    #create-interview {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin: 2rem 0rem;
+
+        input {
+            width: 60rem;
+            color: #2C3333;
+            font-size: 1.2rem;
+            height: 2rem;
+            border-radius: 10px;
+            margin: 10px 0px;
+            padding-left: 20px;
+            border: 2px solid #CAA6A6;
+        }
+
+        input[type="date"] {
+            width: 15rem;
+            color: #2C3333;
+            font-size: 1.2rem;
+            height: 2rem;
+            border-radius: 10px;
+            margin: 10px 0px;
+            padding-left: 20px;
+            border: 2px solid #CAA6A6;
+        }
+
+        input[type="submit"] {
+            font-size: 1.5rem;
+            color: #ffffff;
+            width: 8rem;
+            border: none;
+            background-color: #944E63;
+            padding-left: 0px 20px;
+        }
+    }
+
+    #company-container {
+        display: flex;
+        margin-bottom: 1rem;
+        flex-direction: column;
+        justify-content: space-between;
+        align-items: center;
+        background-color: #B47B84;
+        padding: 0rem 0rem;
+        padding-top: 1rem;
+        border-radius: 1rem;
+
+        #company-head{
+            width: 90%;
+            height: 4rem;
+            display: flex;
+            flex-direction: row;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0rem 2rem;
+            border-radius: 1rem;
+            h1{
+                width: 40rem;
+            }
+            #delete-interview {
+                img {
+                    width: 2rem;
+                    height: 2rem;
+                    z-index: 1;
+                }
+            }
+        }
+
+
+        .show-list {
+            // height: 0rem;
+            // visibility: hidden;
+            width: 60%;
+            border-radius: 1rem;
+            background-color: #FFE7E7;
+
+            #add-student {
+                display: flex;
+                justify-content: center;
+                align-items: center;
+
+                select {
+                    width: 20rem;
+                    color: #2C3333;
+                    font-size: 1.2rem;
+                    height: 2rem;
+                    border-radius: 10px;
+                    margin: 10px 0px;
+                    padding-left: 20px;
+                    border: 2px solid #CAA6A6;
+                    margin: 2rem 1rem;
+                }
+
+                input[type="submit"] {
+                    margin: 2rem 1rem;
+                    border-radius: 10px;
+                    font-size: 1.5rem;
+                    color: #ffffff;
+                    width: 8rem;
+                    height: 2rem;
+                    border: none;
+                    background-color: #944E63;
+                    padding-left: 0px 20px;
+                }
+            }
+
+            #list-container {
+                ul {
+                    padding: 0rem 2rem;
+
+                    #student-list {
+                        display: flex;
+                        align-items: center;
+                        justify-content: space-between;
+
+                        #student-option {
+                            width: 14rem;
+                            display: flex;
+                            align-items: center;
+                            justify-content: space-between;
+                            select {
+                                width: 20rem;
+                                color: #2C3333;
+                                font-size: .8rem;
+                                font-weight: bold;
+                                height: 2rem;
+                                border-radius: 10px;
+                                margin: 10px 0px;
+                                padding-left: 10px;
+                                border: 2px solid #CAA6A6;
+                                margin: 2rem 1rem;
+                            }
+                            img{
+                                height: 2rem;
+                                width: 2rem;
+                
+                            }
+                        }
+                    }
+                }
+            }
+        }
+        .hide-list{
+            height: 0;
+            visibility: hidden;
+        }
+        .arrow{
+            width: 100%;
+            height: 2rem;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            img{
+                height: 1rem;
+                width: 1rem;
+
+            }
+        }
+    }
+}

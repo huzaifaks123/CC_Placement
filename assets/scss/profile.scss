@@ -1,0 +1,19 @@
+#profile-container{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-color: #FFE7E7;
+    div{
+        margin: 50px;
+    }
+    h1{
+        font-size: 4rem;
+        color: #944E63;
+        margin: 5px;
+    }
+    h3{
+        font-size: 2rem;
+        color: #944E63;
+        margin: 5px;
+    }
+}

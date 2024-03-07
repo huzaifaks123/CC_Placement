@@ -1,0 +1,100 @@
+#student-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 40px; }
+  #student-container #export-button {
+    margin-left: auto; }
+    #student-container #export-button button {
+      font-size: 1rem;
+      color: #ffffff;
+      width: 8rem;
+      height: 2rem;
+      border: none;
+      background-color: #944E63;
+      padding-left: 0px 20px;
+      border-radius: 10px; }
+  #student-container #create-student {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    height: 20rem;
+    justify-content: space-between;
+    align-items: center;
+    margin: 2rem 0rem; }
+    #student-container #create-student input[type="submit"] {
+      font-size: 1.5rem;
+      color: #ffffff;
+      width: 10rem;
+      height: 2.5rem;
+      border: none;
+      background-color: #944E63;
+      padding-left: 0px 20px;
+      border-radius: 10px;
+      margin: auto auto 0px 8%; }
+    #student-container #create-student .input-container {
+      margin-top: 1rem;
+      width: 46%; }
+      #student-container #create-student .input-container p {
+        font-size: 1.2rem;
+        margin: .3rem 0rem; }
+      #student-container #create-student .input-container input {
+        width: 97.5%;
+        color: #2C3333;
+        font-size: 1.2rem;
+        height: 2rem;
+        border-radius: 10px;
+        padding-left: 12px;
+        padding-right: -12px;
+        border: 2px solid #CAA6A6; }
+      #student-container #create-student .input-container select {
+        width: 100%;
+        margin-top: 0px;
+        height: 2.35rem;
+        color: grey;
+        font-size: 1.2rem;
+        border-radius: 10px;
+        padding-left: 10px;
+        border: 2px solid #CAA6A6; }
+  #student-container #student-list-container {
+    margin: auto;
+    display: flex;
+    flex-direction: column;
+    margin: 1rem 0rem;
+    align-items: center;
+    padding-top: 1rem;
+    border-radius: 1rem; }
+    #student-container #student-list-container #student-list {
+      margin-top: 1rem;
+      width: 90%;
+      display: flex;
+      flex-direction: row;
+      justify-content: space-between;
+      background-color: #B47B84;
+      align-items: center;
+      padding: 0rem 2rem;
+      border-radius: 1rem; }
+      #student-container #student-list-container #student-list .student-details {
+        width: 90%; }
+      #student-container #student-list-container #student-list #delete-student img {
+        width: 2rem;
+        height: 2rem;
+        z-index: 1; }
+    #student-container #student-list-container .show-list {
+      width: 60%;
+      border-radius: 1rem;
+      background-color: #FFE7E7; }
+      #student-container #student-list-container .show-list #student-list-container ul {
+        padding: 0rem 2rem; }
+        #student-container #student-list-container .show-list #student-list-container ul #student-list {
+          display: flex;
+          align-items: center;
+          justify-content: space-between; }
+          #student-container #student-list-container .show-list #student-list-container ul #student-list #student-option {
+            width: 14rem;
+            display: flex;
+            align-items: center;
+            justify-content: space-between; }
+            #student-container #student-list-container .show-list #student-list-container ul #student-list #student-option img {
+              height: 2rem;
+              width: 2rem; }

@@ -1,0 +1,27 @@
+#nav-container {
+  margin: 0px;
+  padding: 0px 40px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background-color: #944E63; }
+  #nav-container #brand-logo a {
+    color: #ffb1c4;
+    text-decoration: none; }
+  #nav-container #brand-logo a:hover {
+    color: #ffcdcd;
+    text-decoration: none; }
+  #nav-container ul {
+    display: flex;
+    align-items: center;
+    justify-content: space-between; }
+    #nav-container ul li {
+      list-style: none;
+      font-size: 1.5rem;
+      margin: 0px 10px; }
+      #nav-container ul li a {
+        color: #ffb1c4;
+        text-decoration: none; }
+      #nav-container ul li a:hover {
+        color: #ffcdcd;
+        text-decoration: none; }

@@ -1,0 +1,82 @@
+<link rel="stylesheet" href="/css/students_list.css">
+<div id="student-container">
+    <a id="export-button" href="/student/export_file"><button>Download File</button></a>
+
+
+    <form id="create-student" action="/student/create-student" method="post">
+        <div class="input-container">
+            <p>Enter your full name</p>
+            <input type="text" name="student_name" placeholder="Enter name">
+        </div>
+        <div class="input-container">
+            <p>Choose your batch</p>
+            <select name="batch" id="batch">
+                <option value="" disabled selected hidden>select batch</option>
+                <option value="Group A-JAVA-25th Jan 2023">Group A-JAVA-25th Jan 2023</option>
+                <option value="Group B-JAVA-25th Jan 2023">Group B-JAVA-25th Jan 2023</option>
+                <option value="Group A-JAVA-25th FEB 2023">Group A-JAVA-25th FEB 2023</option>
+                <option value="Group B-JAVA-25th FEB 2023">Group B-JAVA-25th FEB 2023</option>
+                <option value="Group A-PYTHON-25th Jan 2023">Group A-PYTHON-25th Jan 2023</option>
+                <option value="Group A-PYTHON-25th FEB 2023">Group A-PYTHON-25th FEB 2023</option>
+            </select>
+        </div>
+        <div class="input-container">
+            <p>Enter your college name</p>
+            <input type="text" name="college_name" placeholder="Enter College Name">
+        </div>
+        <div class="input-container">
+            <p>Choose status of placement</p>
+            <select name="placement_status" id="placement-status">
+                <option value="" disabled selected hidden>Choose Status</option>
+                <option value="PASS">PASS</option>
+                <option value="FAIL">FAIL</option>
+            </select>
+        </div>
+        <div class="input-container">
+            <p>Enter your DSA score</p>
+            <input type="text" name="dsa_score" placeholder="Score / 150">
+        </div>
+        <div class="input-container">
+            <p>Enter your WebD score</p>
+            <input type="text" name="webd_score" placeholder="Score / 150">
+        </div>
+        <div class="input-container">
+            <p>Enter your React score</p>
+            <input type="text" name="react_score" placeholder="Score / 150">
+        </div>
+        <input type="submit" value="Submit">
+    </form>
+
+    <div id="student-list-container">
+        <% for (student of students){ %>
+            <div id="student-list">
+                <div class="student-details">
+                    <h2>
+                        Name : <%= student.student_name %>
+                    </h2>
+                    <h2>
+                        Batch : <%= student.batch %>
+                    </h2>
+                    <h2>
+                        Name : <%= student.college_name %>
+                    </h2>
+                    <h2>
+                        Placement Status : <%= student.placement_status %>
+                    </h2>
+                    <h2>
+                        DSA Score : <%= student.dsa_score %>
+                    </h2>
+                    <h2>
+                        WebD Score : <%= student.webd_score %>
+                    </h2>
+                    <h2>
+                        React Score : <%= student.react_score %>
+                    </h2>
+                </div>
+                <a id="delete-student" href="/student/delete/<%= student._id %>">
+                    <img src="https://cdn-icons-png.flaticon.com/128/6861/6861362.png" alt="delete-logo">
+                </a>
+            </div>
+            <%}%>
+    </div>
+</div>

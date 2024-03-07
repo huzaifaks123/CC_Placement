@@ -1,0 +1,18 @@
+<link rel="stylesheet" href="/css/signin_form.css">
+<div id="signin-container">
+    <h1>Sign In</h1>
+    <form id="create-sessions" action="/user/create-sessions" method="post">
+        <input type="email" name="email" placeholder="Enter Email">
+        <input type="password" name="password" placeholder="Enter password">
+        <input type="submit">
+    </form>
+    
+    <div id="signin-link">
+        <p>Or</p>
+        <button><a href="/user/sign-up">Sign Up</a></button>
+        <button id="google-signin">
+            <img src="https://cdn-icons-png.flaticon.com/128/2702/2702602.png" alt="google-signin">
+            <a href="/user/auth/google">Sign in with Google</a>
+        </button>
+    </div>
+</div>

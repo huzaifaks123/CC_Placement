@@ -1,0 +1,29 @@
+<link rel="stylesheet" href="/css/header.css">
+<header id="nav-container">
+    <div id="brand-logo">
+        <a href="/"><h1>Placement Cell</h1></a>
+    </div>
+    <ul>
+        <% if(locals.user){%>
+        <li>
+            <a href="/user/profile">Profile</a>
+        </li>
+        <li>
+            <a href="/interviews/interview_list">Interviews</a>
+        </li>
+        <li>
+            <a href="/student/students_list">Students</a>
+        </li>
+        <li>
+            <a href="/user/external_jobs_list">Jobs</a>
+        </li>
+        <li>
+            <a href="/user/sign-out">Sign Out</a>
+        </li>
+        <%}else{%>
+        <li>
+            <a href="/user/sign-in">Sign In</a>
+        </li>
+        <% }%>
+    </ul>
+</header>

@@ -1,0 +1,19 @@
+<link rel="stylesheet" href="/css/signup_form.css">
+<div id="signup-container">
+    <h1>Sign Up</h1>
+    <form id="create-user" action="/user/create-user" method="post">
+        <input type="text" name="name" placeholder="Enter Your Name" required>
+        <input type="email" name="email" placeholder="Enter Email" required>
+        <input type="password" name="password" placeholder="Enter New Password" required>
+        <input type="text" name="confirm_password" placeholder="Confirm Password" required>
+        <input type="submit" value="Submit">
+    </form>
+
+    <div id="signup-link">
+        <p>Or</p>
+        <button id="google-signin">
+            <img src="https://cdn-icons-png.flaticon.com/128/2702/2702602.png" alt="google-signin">
+            <a href="/user/auth/google">Sign up with Google</a>
+        </button>
+    </div>
+</div>

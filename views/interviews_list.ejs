@@ -1,0 +1,80 @@
+<link rel="stylesheet" href="/css/interviews_list.css">
+<div id="interview-container">
+    <a id="export-button" href="/interviews/export_file"><button>Download File</button></a>
+
+    <form id="create-interview" action="/interviews/create_interview" method="post">
+        <input type="text" name="company_name" placeholder="Company Name">
+        <input type="date" name="interview_date" placeholder="Choose a Date">
+        <input type="submit" value="Submit">
+    </form>
+
+
+    <%for (interview of interviews){%>
+        <div class="<%= interview._id %>" id="company-container">
+            <div id="company-head">
+                <h1>
+                    <%= interview.company_name %>
+                </h1>
+                <h2>
+                    <%= interview.interview_date %>
+                </h2>
+                <a id="delete-interview" class="<%= interview._id %>"
+                    href="/student/remove_company/<%= interview._id %>">
+                    <img src="https://cdn-icons-png.flaticon.com/128/6861/6861362.png" alt="delete-logo">
+                </a>
+            </div>
+            <div id="show-list" class="<%= interview._id %> hide-list">
+                <form id="add-student" action="/student/add_student/<%= interview._id %>" method="post">
+                    <select name="student_name" id="add-student">
+                        <% for(student of students){%>
+                            <option value="" disabled hidden selected>Select Student</option>
+                            <option value="<%= student.student_name %>">
+                                <%= student.student_name %>
+                            </option>
+                            <%}%>
+                    </select>
+                    <input type="submit" value="Submit">
+                </form>
+                <div id="list-container">
+                    <ul>
+
+                        <% let counter=0; for (student of students) {%>
+                            <% for(companyApplied of student.company_applied){%>
+                                <div id="student-list">
+                                    <%if(companyApplied.company_name===interview.company_name){%>
+                                        <h2>
+                                            <%= student.student_name%>
+                                        </h2>
+                                        <div id="student-option">
+                                            <select name="placement_status" id="placement-status"
+                                                class="<%= student._id%> <%= interview._id %> <%= students.length %> <%= counter %>">
+                                                <option value="<%= student.company_applied[0].placement_result %>"
+                                                    disabled selected hidden>
+                                                    <%= student.company_applied[0].placement_result %>
+                                                </option>
+                                                <option value="PASS">PASS</option>
+                                                <option value="FAIL">FAIL</option>
+                                                <option value="ON HOLD">ON HOLD</option>
+                                                <option value="DIDN'T ATTEMPT">DIDN'T ATTEMPT</option>
+                                            </select>
+                                            <a href="/student/remove/<%= student._id %>/<%= interview._id %>">
+                                                <img src="https://cdn-icons-png.flaticon.com/128/1828/1828843.png"
+                                                    alt="remove_button">
+                                            </a>
+
+                                        </div>
+                                        <%}%>
+                                </div>
+                                <%}%>
+                                    <%counter++; }%>
+                    </ul>
+                </div>
+            </div>
+            <div class="arrow <%= interview._id %>" id="arrow">
+                <img src="https://cdn-icons-png.flaticon.com/128/32/32195.png" alt="arrow">
+            </div>
+        </div>
+        <%}%>
+
+            <script src="/js/interview_list.js"></script>
+</div>
