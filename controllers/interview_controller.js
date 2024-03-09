@@ -57,9 +57,8 @@ module.exports.exportFile = async (req, res) => {
             const studentsApplied = students.filter(student => {
                 return student.company_applied.some(companyApplied => companyApplied.company_name !== interview.company_name)
             })
-            // console.log(studentsApplied.map(student => `${student.student_name} : ${student.placement_status}`).join(", "))
             interview.sr_no = serialnumber;
-            interview.studentApplied = studentsApplied.map(student => `${student.student_name} : ${student.placement_status}`).join(", ")
+            interview.studentApplied = studentsApplied.map(student => `${student.student_name}`).join(", ")
             worksheet.addRow(interview)
             serialnumber++
         });
@@ -87,33 +86,19 @@ module.exports.exportFile = async (req, res) => {
 
 module.exports.updateStudent = async (req, res) => {
 
-    // let student = await Student.findOne({ student_id: req.body.studentId })
-    // let interview = await Interview.findOne({ company_id : req.params.companyId })
-    // if (student && interview) {
-    //     student.company_applied.push({
-    //         company_name: interview.company_name,
-    //         placement_result: "DIDN'T ATTEMPT",
-    //         company_id: req.params.id
-    //     })
-    //     await student.save()
-    // }else{
-    //     console.log("Error while adding")
-    // }
-    // return res.redirect('back')
-
     let student = await Student.findOne({ _id: req.params.studentId })
-    console.log("student",student)
+    console.log("student", student)
     const index = student.company_applied.findIndex(company => company.company_id == req.params.companyId)
-    console.log("index",index)
-    if(index !== -1){
+    console.log("index", index)
+    if (index !== -1) {
         student.company_applied[index].placement_result = req.params.status
-        console.log("req.params.status",req.params.status)
+        console.log("req.params.status", req.params.status)
         await student.save();
         return res.redirect('back')
-    }else{
+    } else {
         console.log("not found")
     }
-    
+
     // filter(companyApplied => companyApplied.company_id !== req.params.companyId)
     // console.log(req.params.companyId,"company=========", student.company_applied)
     // student.company_applied = student.company_applied.filter(companyApplied => companyApplied.id !== req.params.companyId);

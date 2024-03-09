@@ -6,11 +6,11 @@
     <form id="create-student" action="/student/create-student" method="post">
         <div class="input-container">
             <p>Enter your full name</p>
-            <input type="text" name="student_name" placeholder="Enter name">
+            <input type="text" name="student_name" placeholder="Enter name" required>
         </div>
         <div class="input-container">
             <p>Choose your batch</p>
-            <select name="batch" id="batch">
+            <select name="batch" id="batch" required>
                 <option value="" disabled selected hidden>select batch</option>
                 <option value="Group A-JAVA-25th Jan 2023">Group A-JAVA-25th Jan 2023</option>
                 <option value="Group B-JAVA-25th Jan 2023">Group B-JAVA-25th Jan 2023</option>
@@ -22,11 +22,11 @@
         </div>
         <div class="input-container">
             <p>Enter your college name</p>
-            <input type="text" name="college_name" placeholder="Enter College Name">
+            <input type="text" name="college_name" placeholder="Enter College Name" required>
         </div>
         <div class="input-container">
             <p>Choose status of placement</p>
-            <select name="placement_status" id="placement-status">
+            <select name="placement_status" id="placement-status" required>
                 <option value="" disabled selected hidden>Choose Status</option>
                 <option value="PASS">PASS</option>
                 <option value="FAIL">FAIL</option>
@@ -34,15 +34,15 @@
         </div>
         <div class="input-container">
             <p>Enter your DSA score</p>
-            <input type="text" name="dsa_score" placeholder="Score / 150">
+            <input type="text" name="dsa_score" placeholder="Score / 150" required>
         </div>
         <div class="input-container">
             <p>Enter your WebD score</p>
-            <input type="text" name="webd_score" placeholder="Score / 150">
+            <input type="text" name="webd_score" placeholder="Score / 150" required>
         </div>
         <div class="input-container">
             <p>Enter your React score</p>
-            <input type="text" name="react_score" placeholder="Score / 150">
+            <input type="text" name="react_score" placeholder="Score / 150" required>
         </div>
         <input type="submit" value="Submit">
     </form>

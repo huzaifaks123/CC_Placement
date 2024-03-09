@@ -1,6 +1,24 @@
 #home-container{
+    display: flex;
+    flex-direction: column;
+
+    #export-button {
+        margin-left: auto;
+
+        button {
+            font-size: 1rem;
+            color: #ffffff;
+            width: 8rem;
+            height: 2rem;
+            border: none;
+            background-color: #944E63;
+            padding-left: 0px 20px;
+            border-radius: 10px;
+        }
+    }
+
     padding: 0px 40px;
-    margin-top: 80px;
+    margin-top: 40px;
     h1{
         color: #944E63;
         text-align: center;

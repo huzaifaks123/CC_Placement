@@ -10,13 +10,13 @@ module.exports.profile = function (req, res) {
 }
 module.exports.signIn = function (req, res) {
     if (req.isAuthenticated()) {
-        return res.redirect('/user/profile')
+        return res.redirect('/')
     }
     return res.render('signin_form')
 }
 module.exports.signUp = function (req, res) {
     if (req.isAuthenticated()) {
-        return redirect('/user/profile')
+        return redirect('/')
     }
     return res.render('signup_form')
 }
