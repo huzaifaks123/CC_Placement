@@ -4,8 +4,8 @@ const crypto = require('crypto')
 const User = require('../models/user_model')
 
 passport.use(new googleStrategy({
-    clientID: ${{CLIENTID}},
-    clientSecret:  ${{CLIENTSECRET}},
+    clientID: CLIENTID,
+    clientSecret:  CLIENTSECRET,
     callbackURL: "http://localhost:8000/user/auth/google/callback"
 },
     async function (accessToken, refreshToken, profile, done) {
