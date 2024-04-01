@@ -3,13 +3,13 @@
     <a id="export-button" href="/interviews/export_file"><button>Download File</button></a>
 
     <form id="create-interview" action="/interviews/create_interview" method="post">
-        <input type="text" name="company_name" placeholder="Company Name">
-        <input type="date" name="interview_date" placeholder="Choose a Date">
+        <input type="text" name="company_name" placeholder="Company Name" required>
+        <input type="date" name="interview_date" placeholder="Choose a Date" required>
         <input type="submit" value="Submit">
     </form>
 
 
-    <%for (interview of interviews){%>
+    <% let counter=0; for (interview of interviews){%>
         <div class="<%= interview._id %>" id="company-container">
             <div id="company-head">
                 <h1>
@@ -25,7 +25,7 @@
             </div>
             <div id="show-list" class="<%= interview._id %> hide-list">
                 <form id="add-student" action="/student/add_student/<%= interview._id %>" method="post">
-                    <select name="student_name" id="add-student">
+                    <select name="student_name" id="add-student" required>
                         <% for(student of students){%>
                             <option value="" disabled hidden selected>Select Student</option>
                             <option value="<%= student.student_name %>">
@@ -38,7 +38,7 @@
                 <div id="list-container">
                     <ul>
 
-                        <% let counter=0; for (student of students) {%>
+                        <% for (student of students) {%>
                             <% for(companyApplied of student.company_applied){%>
                                 <div id="student-list">
                                     <%if(companyApplied.company_name===interview.company_name){%>
@@ -47,10 +47,10 @@
                                         </h2>
                                         <div id="student-option">
                                             <select name="placement_status" id="placement-status"
-                                                class="<%= student._id%> <%= interview._id %> <%= students.length %> <%= counter %>">
-                                                <option value="<%= student.company_applied[0].placement_result %>"
+                                                class="<%= student._id%> <%= interview._id %> <%= students.length*interviews.length %> <%= counter %>" required>
+                                                <option value="<%= companyApplied.placement_result %>"
                                                     disabled selected hidden>
-                                                    <%= student.company_applied[0].placement_result %>
+                                                    <%= companyApplied.placement_result %>
                                                 </option>
                                                 <option value="PASS">PASS</option>
                                                 <option value="FAIL">FAIL</option>
@@ -66,7 +66,7 @@
                                         <%}%>
                                 </div>
                                 <%}%>
-                                    <%counter++; }%>
+                                    <% counter++; }%>
                     </ul>
                 </div>
             </div>
@@ -74,7 +74,7 @@
                 <img src="https://cdn-icons-png.flaticon.com/128/32/32195.png" alt="arrow">
             </div>
         </div>
-        <%}%>
+        <% }%>
 
             <script src="/js/interview_list.js"></script>
 </div>

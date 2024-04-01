@@ -3,27 +3,8 @@ const Interview = require('../models/interview_model')
 const excelJs = require('exceljs')
 
 module.exports.createStudent = async (req, res) => {
-    let student = await Student.create(req.body)
-    // try {
-    //     if (student.xhr) {
-    //         return res.status(200).json({
-    //             data: {
-    //                 student: student
-    //             },
-    //             Message: "Student Created"
-    //         })
-    //     }
+    await Student.create(req.body)
     return res.redirect('back')
-    // } catch (error) {
-    //     console.log("Error while creating post", error)
-    // }
-    // .then(student => {
-    //     console.log("new student added", req.body)
-    // })
-    // .catch(err => {
-    //     console.log("Error occured while adding new student", err)
-    //     return res.redirect('/user/sign-in')
-    // })
 }
 
 module.exports.exportFile = async (req, res) => {
@@ -36,7 +17,9 @@ module.exports.exportFile = async (req, res) => {
             { header: "Student Name", key: "student_name" },
             { header: "CollegeName", key: "college_name" },
             { header: "Placement Status", key: "placement_status" },
-            { header: "Course Score", key: "course_score" },
+            { header: "DSA Score", key: "dsa_score" },
+            { header: "Web-Dev Score", key: "webd_score" },
+            { header: "React Score", key: "react_score" },
             { header: "Companies", key: "companies" },
         ];
 
@@ -44,11 +27,8 @@ module.exports.exportFile = async (req, res) => {
 
         const students = await Student.find({})
         students.forEach(student => {
-            // const studentsApplied = students.filter(student => {
-            //     return student.company_applied.map(company => company.company_name)
-            // })
             let companyNames = student.company_applied.map(company => company.company_name).join(", ")
-            console.log(companyNames)
+            console.log("companyNames",companyNames)
             student.sr_no = serialnumber;
             student.companies = companyNames
             worksheet.addRow(student)
@@ -85,7 +65,6 @@ module.exports.studentsList = async function (req, res) {
         return res.render('students_list', {
             students: students,
             user: req.user
-            // appliedStudents : 
         })
     } catch (error) {
         console.log("Error fetching student data")
@@ -99,6 +78,7 @@ module.exports.addStudent = async (req, res) => {
     if (student && interview) {
         student.company_applied.push({
             company_name: interview.company_name,
+            interview_date: interview.interview_date,
             placement_result: "DIDN'T ATTEMPT",
             company_id: req.params.id
         })
@@ -111,9 +91,6 @@ module.exports.addStudent = async (req, res) => {
 module.exports.removeStudent = async (req, res) => {
     let student = await Student.findOne({ _id: req.params.studentId })
     student.company_applied = student.company_applied.filter(companyApplied => companyApplied.company_id !== req.params.companyId)
-    // student.company_applied = student.company_applied.filter(companyApplied => companyApplied.id !== req.params.companyId);
-    // student.company_applied.push(interview)
-    // console.log(req.body, "----------------------------------------", req.params.companyId, req.params.studentId)
     await student.save();
     return res.redirect('back')
 }

@@ -33,11 +33,15 @@ const studentSchema = mongoose.Schema({
         company_name: {
             type: String,
         },
-        placement_result : {
+        placement_result: {
             type: String,
         },
-        company_id : {
-            type : String
+        interview_date: {
+            type: String,
+            required: true
+        },
+        company_id: {
+            type: String
         }
     }
     ]
