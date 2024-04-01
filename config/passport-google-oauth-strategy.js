@@ -4,9 +4,9 @@ const crypto = require('crypto')
 const User = require('../models/user_model')
 
 passport.use(new googleStrategy({
-    clientID: "705391093789-qcfpk89sa9ad5i7d4hdjgctki5h990d2.apps.googleusercontent.com",
-    clientSecret: "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",
-    callbackURL: "http://localhost:8000/user/auth/google/callback"
+    clientID: process.env.CLIENT_ID,
+    clientSecret: process.env.CLIENT_SECRET,
+    callbackURL: process.env.CALLBACK_URL,
 },
     async function (accessToken, refreshToken, profile, done) {
         let user = await User.findOne({ email: profile.emails[0].value })

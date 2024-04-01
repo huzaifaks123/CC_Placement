@@ -1,7 +1,8 @@
+require('dotenv').config()
 const express = require('express');
 const cookieParser = require('cookie-parser')
 const app = express();
-const port = 8000;
+const port = process.env.PORT;
 const expressLayouts = require('express-ejs-layouts')
 const db = require('./config/mongoose')
 const excelJs = require('exceljs')
@@ -48,7 +49,7 @@ app.use(session({
         maxAge :  (10 * 10000 * 60)
     },
     store : MongoStore.create({
-        mongoUrl : 'mongodb://localhost/CC_placement',
+        mongoUrl : process.env.MONGO_URL,
         autoRemove : 'disabled'
     }),
     function(err){

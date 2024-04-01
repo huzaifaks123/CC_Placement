@@ -7,7 +7,7 @@ const User = require('../models/user_model');
 console.log("inside JWT")
 let opts = {
     jwtFromRequest: ExtractJwt.fromAuthHeaderAsBearerToken(),
-    secretOrKey : "CC_Placement"
+    secretOrKey : process.env.JWT_SECRET
 }
 
 
@@ -26,19 +26,5 @@ passport.use(new JwtStrategy(opts, async (jwt_payload, done) => {
         return done(err, false)
     })
 }))
-
-
-// passport.use(new JwtStrategy(opts, async function(jwtPayload, done) {
-//     try {
-//         const user = await User.findById(jwtPayload._id);
-//         if (user) {
-//             return done(null, user);
-//         } else {
-//             return done(null, false);
-//         }
-//     } catch (error) {
-//         return done(error, false);
-//     }
-// }));
 
 module.exports = passport;
