@@ -42,7 +42,7 @@ app.set('views','./views');
 
 app.use(session({
     name : "CC_Placement",
-    secret : "random",
+    secret : process.env.JWT_SECRET,
     saveUninitialized : false,
     resave : false,
     cookie : {
