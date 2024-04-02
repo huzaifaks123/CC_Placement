@@ -1,8 +1,16 @@
+// import passport from modules
 const passport = require('passport')
+
+// import googleOauthStrategy from modules
 const googleStrategy = require('passport-google-oauth').OAuth2Strategy
+
+// import cypto from crypto
 const crypto = require('crypto')
+
+// import User from user model
 const User = require('../models/user_model')
 
+// create google auth stratgey using google dev
 passport.use(new googleStrategy({
     clientID: process.env.CLIENT_ID,
     clientSecret:process.env.CLIENT_SECRET,

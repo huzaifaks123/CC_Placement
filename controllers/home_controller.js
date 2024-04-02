@@ -1,14 +1,18 @@
+// import model from there modules
 const Interview = require("../models/interview_model");
 const Student = require("../models/student_model");
+
+// import exceljs from its modules
 const excelJs = require('exceljs')
 
-module.exports.home = function(req, res){
-    // res.end("<h1>Hello Buddy!!</h1>")
-    return res.render('_home',{
-        user : req.user
+// export home module
+module.exports.home = function (req, res) {
+    return res.render('_home', {
+        user: req.user
     })
 }
 
+// export export files modules for downloading purpose
 module.exports.exportFile = async (req, res) => {
     try {
         const workbook = new excelJs.Workbook();
@@ -26,7 +30,6 @@ module.exports.exportFile = async (req, res) => {
             { header: "Interview Date", key: "interviewDate" },
             { header: "Interview Company", key: "companyNames" },
             { header: "Interview Result", key: "InterviewResult" },
-            // { header: "Companies", key: "companies" },
         ];
 
         let serialnumber = 1;
@@ -35,14 +38,10 @@ module.exports.exportFile = async (req, res) => {
         const interviews = await Interview.find({})
         students.forEach(student => {
             student.company_applied.forEach(company => {
-                student.companyNames = company.company_name,
-                student.interviewDate = company.interview_date,
-                student.InterviewResult = company.placement_result,
-                // let interviewDate = student.company_applied.map(company => company.interview_date)
-                console.log("companyNames",company.company_name, company.interview_date)
+                    student.companyNames = company.company_name,
+                    student.interviewDate = company.interview_date,
+                    student.InterviewResult = company.placement_result,
                 student.sr_no = serialnumber;
-                // student.companyNames = companyNames
-                // student.interviewDate = interviewDate
                 worksheet.addRow(student)
                 serialnumber++
             })
@@ -62,6 +61,7 @@ module.exports.exportFile = async (req, res) => {
             res.status(200)
         })
 
+        // handling errors
     } catch (error) {
         console.log("Error exporting file :", error)
     }

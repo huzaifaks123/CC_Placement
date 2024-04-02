@@ -1,12 +1,17 @@
+// import model from there modules
 const Student = require('../models/student_model')
 const Interview = require('../models/interview_model')
+
+// import exceljs from its modules
 const excelJs = require('exceljs')
 
+// export createStudent module
 module.exports.createStudent = async (req, res) => {
     await Student.create(req.body)
     return res.redirect('back')
 }
 
+// export exportFile module to download relevent file
 module.exports.exportFile = async (req, res) => {
     try {
         const workbook = new excelJs.Workbook();
@@ -24,7 +29,7 @@ module.exports.exportFile = async (req, res) => {
         ];
 
         let serialnumber = 1;
-
+        
         const students = await Student.find({})
         students.forEach(student => {
             let companyNames = student.company_applied.map(company => company.company_name).join(", ")
@@ -34,33 +39,34 @@ module.exports.exportFile = async (req, res) => {
             worksheet.addRow(student)
             serialnumber++
         });
-
+        
         worksheet.getRow(1).eachCell((cell) => {
             cell.font = { bold: true }
         })
-
+        
         res.setHeader(
             "Content-Type",
             "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet"
-        )
-        res.setHeader("Content-Disposition", `attachment; filename=interview.xlsx`)
-
-        return workbook.xlsx.write(res).then(() => {
-            res.status(200)
-        })
-
-    } catch (error) {
-        console.log("Error exporting file :", error)
+            )
+            res.setHeader("Content-Disposition", `attachment; filename=interview.xlsx`)
+            
+            return workbook.xlsx.write(res).then(() => {
+                res.status(200)
+            })
+            
+        } catch (error) {
+            console.log("Error exporting file :", error)
+        }
     }
-}
 
-module.exports.deleteStudent = async (req, res) => {
+    module.exports.deleteStudent = async (req, res) => {
     await Student.deleteOne({ _id: req.params.id })
     return res.redirect('back')
 }
+
+// export addStudent module
 module.exports.studentsList = async function (req, res) {
     try {
-        // let appliedStudents = Student.fin
         let students = await Student.find({})
         return res.render('students_list', {
             students: students,
@@ -69,9 +75,10 @@ module.exports.studentsList = async function (req, res) {
     } catch (error) {
         console.log("Error fetching student data")
     }
-
+    
 }
 
+// export addStudent module
 module.exports.addStudent = async (req, res) => {
     let student = await Student.findOne({ student_name: req.body.student_name })
     let interview = await Interview.findOne({ _id: req.params.id })
@@ -88,6 +95,8 @@ module.exports.addStudent = async (req, res) => {
     }
     return res.redirect('back')
 }
+
+// export removeStudent module
 module.exports.removeStudent = async (req, res) => {
     let student = await Student.findOne({ _id: req.params.studentId })
     student.company_applied = student.company_applied.filter(companyApplied => companyApplied.company_id !== req.params.companyId)
@@ -95,7 +104,7 @@ module.exports.removeStudent = async (req, res) => {
     return res.redirect('back')
 }
 
-
+// export removeCompany module
 module.exports.removeCompany = async (req, res) => {
     await Interview.deleteOne({ _id: req.params.companyId })
     let students = await Student.find({})
@@ -106,6 +115,8 @@ module.exports.removeCompany = async (req, res) => {
     }
     return res.redirect('back')
 }
+
+// export deleteInterview module
 module.exports.deleteInterview = async (req, res) => {
     console.log("inteview deleted")
     return res.redirect('back')

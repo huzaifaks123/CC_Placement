@@ -1,7 +1,11 @@
+// import model from there modules
 const Interview = require('../models/interview_model')
 const Student = require('../models/student_model')
+
+// import exceljs from its modules
 const excelJs = require('exceljs')
 
+// export interviewList module
 module.exports.interviewList = async function (req, res) {
     try {
         let interviews = await Interview.find({})
@@ -15,12 +19,13 @@ module.exports.interviewList = async function (req, res) {
         } else {
             return res.redirect('/user/sign-in')
         }
-
+        
     } catch (error) {
         console.log("Error while fetching interview :", error)
     }
 }
 
+// export createInterview module
 module.exports.createInterview = async (req, res) => {
     try {
         let isCompany = await Interview.findOne({ company_name: req.body.company_name })
@@ -31,13 +36,14 @@ module.exports.createInterview = async (req, res) => {
         } else {
             return res.redirect('back')
         }
-
+        
     } catch (error) {
         console.log("error creating new company :", error)
     }
-
+    
 }
 
+// export exportFile module
 module.exports.exportFile = async (req, res) => {
     try {
         const workbook = new excelJs.Workbook();
@@ -49,9 +55,9 @@ module.exports.exportFile = async (req, res) => {
             { header: "Date", key: "interview_date" },
             { header: "Student Applied", key: "studentApplied" },
         ];
-
+        
         let serialnumber = 1;
-
+        
         const interviews = await Interview.find({})
         interviews.forEach(interview => {
             const studentsApplied = students.filter(student => {
@@ -62,30 +68,31 @@ module.exports.exportFile = async (req, res) => {
             worksheet.addRow(interview)
             serialnumber++
         });
-
+        
         worksheet.getRow(1).eachCell((cell) => {
             cell.font = { bold: true }
         })
-
+        
         res.setHeader(
             "Content-Type",
             "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet"
-        )
-        res.setHeader("Content-Disposition", `attachment; filename=interview.xlsx`)
-
-        return workbook.xlsx.write(res).then(() => {
-            res.status(200)
-        })
-
-    } catch (error) {
-        console.log("Error exporting file :", error)
+            )
+            res.setHeader("Content-Disposition", `attachment; filename=interview.xlsx`)
+            
+            return workbook.xlsx.write(res).then(() => {
+                res.status(200)
+            })
+            
+        } catch (error) {
+            console.log("Error exporting file :", error)
     }
 }
 
 
 
+// export updateStudent module
 module.exports.updateStudent = async (req, res) => {
-
+    
     let student = await Student.findOne({ _id: req.params.studentId })
     console.log("student", student)
     const index = student.company_applied.findIndex(company => company.company_id == req.params.companyId)
@@ -98,11 +105,4 @@ module.exports.updateStudent = async (req, res) => {
     } else {
         console.log("not found")
     }
-
-    // filter(companyApplied => companyApplied.company_id !== req.params.companyId)
-    // console.log(req.params.companyId,"company=========", student.company_applied)
-    // student.company_applied = student.company_applied.filter(companyApplied => companyApplied.id !== req.params.companyId);
-    // student.company_applied.push(interview)
-    // console.log(student.company_applied.id)
-    // console.log(req.body, "----------------------------------------", req.params.companyId, req.params.studentId)
 }

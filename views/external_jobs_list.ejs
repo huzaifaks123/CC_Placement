@@ -1,1 +1,37 @@
-external job 
+<link rel="stylesheet" href="/css/external_jobs_list.css">
+<div id="job-list-container">
+    <% if(jobs){ for (job of jobs){ %>
+        <div id="job-list">
+            <div class="job-details">
+                <div id="job-header">
+                    <h2 class="job-title">
+                        <%= job.title?job.title:"N.A." %>
+                    </h2>
+                    <h3>
+                        <%= job.experienceLevel?job.experienceLevel:"N.A." %>
+                    </h3>
+                    <h3>
+                        Posted : <%= job.postedTime?job.postedTime:"N.A." %>
+                    </h3>
+                </div>
+                <h3>
+                    <%= job.companyName?job.companyName:"N.A." %>
+                </h3>
+                <h3>
+                    <%= job.location?job.location:"N.A." %> (<%= job.contractType?job.contractType:"N.A." %>)
+                </h3>
+                <h3>
+                    <%= job.applicationsCount?job.applicationsCount:"N.A." %>
+                </h3>
+                <div class="btn-container">
+                    <a href=<%=job.jobUrl %> target=_blank>
+                        View Job
+                    </a>
+                    <a href=<%=job.companyUrl %> target= _blank>
+                        View Company
+                    </a>
+                </div>
+            </div>
+        </div>
+        <%}}%>
+</div>

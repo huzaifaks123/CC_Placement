@@ -1,19 +1,5 @@
 {
-    console.log("inside js")
-    // let updatePlacementStatus = () => {
-    //     $(".placement-status").each(function () {
-    //         let currentList = $(this);
-    //         currentList.on('change', function () {
-    //             console.log("inside loop")
-    //             let studentId = currentList.attr('class').split(" ")[0];
-    //             let companyId = currentList.attr("class").split(" ")[1];
-    //             let status = currentList.val();
-    //             if (status) {
-    //                 window.location.pathname = `/interviews/update/${studentId}/${companyId}/${status}`;
-    //             }
-    //         });
-    //     });
-    // };
+    // function to handle placement update from 
     let updatePlacementStatus = () => {
         let placementStatus = $(`#placement-status`);
         if (placementStatus.length > 0) {
@@ -33,6 +19,7 @@
             }
         }
     }
+    // function to handle toggling of interview lists
     let toggleInterviewList = () => {
         $(".arrow").on("click", function () {
             let interviewId = $(this).attr("class").split(" ")[1];
@@ -41,10 +28,8 @@
             let selectedShowList = $(`.${interviewId}.show-list`)
             let selectedHideList = $(`.${interviewId}.hide-list`)
             if (selectedShowList.length > 0) {
-                // console.log("if", selectedShowList)
                 selectedShowList.removeClass('show-list').addClass('hide-list');
             } else {
-                // console.log("else", selectedHideList)
                 selectedHideList.removeClass('hide-list').addClass('show-list');
             }
         }

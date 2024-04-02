@@ -1,5 +1,7 @@
+// import mongoose to create Schema
 const mongoose = require('mongoose')
 
+// create Schema
 const studentSchema = mongoose.Schema({
     student_name: {
         type: String,
@@ -49,6 +51,8 @@ const studentSchema = mongoose.Schema({
     timestamps: true,
 })
 
+// define Student model
 const Student = mongoose.model('Student', studentSchema)
 
+// export model
 module.exports = Student

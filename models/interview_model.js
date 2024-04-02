@@ -1,5 +1,7 @@
+// import mongoose to create Schema
 const mongoose = require('mongoose')
 
+// create Schema
 const interviewSchema = mongoose.Schema({
     company_name: {
         type: String,
@@ -13,6 +15,8 @@ const interviewSchema = mongoose.Schema({
     timestamps: true
 })
 
+// define interview model
 const Interview = mongoose.model('Interview', interviewSchema)
 
+// export model
 module.exports = Interview

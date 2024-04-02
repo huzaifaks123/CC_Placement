@@ -1,8 +1,12 @@
+// import passport from modules
 const passport = require('passport')
+// import localStrategy from modules
 const localStrategy = require('passport-local').Strategy
 
+// import User from user model
 const User = require('../models/user_model')
 
+// use localStrategy to create and verify token
 passport.use(new localStrategy({
     usernameField : 'email',
     passReqToCallback : true
@@ -23,6 +27,7 @@ function (req, email, password, done) {
 
 }
 ))
+
 
 passport.serializeUser((user, done) => {
     done(null, user.id)
